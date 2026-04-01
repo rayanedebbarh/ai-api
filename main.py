@@ -12,6 +12,7 @@ load_dotenv()
 
 app = FastAPI()
 
+# I added this because without it the browser was blocking requests from the HTML page
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -33,6 +34,7 @@ class PromptRequest(BaseModel):
 @app.post("/ask")
 def ask_ai(request: PromptRequest):
 
+    # this checks which AI the user wants and sends the request to the right one
     if request.model == "chatgpt":
         client = openai.OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
