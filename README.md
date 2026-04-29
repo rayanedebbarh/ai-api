@@ -1,27 +1,35 @@
-# My API
+# AI API Gateway
 
-A Python API built with FastAPI that routes prompts to different AI models based on a model directive.
+A Python REST API that connects to multiple AI models through a single unified endpoint. You send a question and specify which AI you want to use, and the API routes your request to the right provider and returns the response.
 
-## Supported Models
-- ChatGPT (OpenAI)
-- Claude (Anthropic)
-- Groq (LLaMA 3.3)
+## Live API
 
-## How to run
+Test it directly in your browser — no setup needed:
 
-1. Install dependencies:
-   pip3 install fastapi uvicorn openai anthropic groq python-dotenv
+👉 [https://ai-api-ga55.onrender.com/docs](https://ai-api-ga55.onrender.com/docs)
 
-2. Create a .env file with your API keys:
-   OPENAI_API_KEY=your-key
-   ANTHROPIC_API_KEY=your-key
-   GROQ_API_KEY=your-key
+> Note: The free server sleeps when inactive. If it takes a few seconds to respond, just wait and try again.
 
-3. Start the server:
-   uvicorn main:app --reload
+## Supported AI Models
 
-4. Open the interface:
-   Open index.html in your browser
+- **ChatGPT** via OpenAI
+- **Claude** via Anthropic
+- **LLaMA 3.3** via Groq
 
-5. Or you can also test via Swagger UI:
-   http://127.0.0.1:8000/docs
+## How to use the API
+
+Send a POST request to `/ask` with a prompt and a model name:
+
+```json
+{
+  "prompt": "What is the capital of Morocco?",
+  "model": "groq"
+}
+```
+
+Model options: `chatgpt`, `claude`, `groq`
+
+## How to run locally
+
+1. Clone the repository
+2. Install dependencies:
